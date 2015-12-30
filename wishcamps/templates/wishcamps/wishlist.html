@@ -1,0 +1,204 @@
+{% extends 'wishcamps/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+</br>
+<a href="{% url 'wishcamps:wishnew' %}"><button type="button" class="btn btn-default btn-md">
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Post
+</button></a>
+
+</br>
+
+{% for camp in wishcamps %}
+    {% if forloop.first %}
+        <div class="row">
+    {% endif %}
+    <div class="col-md-4 portfolio-item">
+        <h3>
+            <a href="{% url 'wishcamps:wishdetail' camp.id %}">{{ camp.title }}</a>
+        </h3>
+        <a href="{% url 'wishcamps:wishdetail' camp.id %}">
+            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+        </a>
+
+        <p>{{ camp.description|truncatewords:20 }}</p>
+    </div>
+    {% if forloop.counter|divisibleby:"3" %}
+        </div>
+        {% if not forloop.last %}
+            <div class="row">
+        {% endif %}
+    {% endif %}
+    {% if forloop.last and not forloop.counter|divisibleby:"3" %}
+         </div>
+    {% endif %}
+{% empty %}
+
+<h3>There are no suggested camps yet! Post one now!</h3>
+
+{% endfor %}
+
+{% if is_paginated %}
+<ul class="pagination">
+{% if page_obj.has_previous %}
+    <li>
+        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+    </li>
+{% endif %}
+    <li class="">
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+    </li>
+{% if page_obj.has_next %}
+    <li>
+        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+    </li>
+{% endif %}
+</ul>
+
+{% endif %}
+
+{% else %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Services
+                    <small>Subheading</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'joincamp' %}">Home</a>
+                    </li>
+                    <li class="active">Services</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="col-lg-12">
+                <h3 class="page-header">
+                    We help to organise the camps you wish existed!
+                </h3> 
+            </div>
+        <!-- Image Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <img class="img-responsive" src="../../../static/img/people.jpg" alt="">
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Service Panels -->
+        <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">How?</h2>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h3>Step One</h3>
+                        <p>Create an Account</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h3>Step Two</h3>
+                        <p>Post up the details of the camp</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h3>Step Three</h3>
+                        <p>Share it with your friends</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h3>Step Four</h3>
+                        <p>Wait for us to organise it for you!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Tabs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Service Tabs</h2>
+            </div>
+            <div class="col-lg-12">
+
+                <ul id="myTab" class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-user"></i> Service One</a>
+                    </li>
+                    <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-pencil"></i> Service Two</a>
+                    </li>
+                    <li class=""><a href="#service-three" data-toggle="tab"><i class="fa fa-users"></i> Service Three</a>
+                    </li>
+                    <li class=""><a href="#service-four" data-toggle="tab"><i class="fa fa-thumbs-o-up"></i> Service Four</a>
+                    </li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="service-one">
+                        <h4>Step One</h4>
+                        <p>Creating an account is for us to contact you conveniently when a camp is registered or when there is a camp that might interest you! </p>
+                    </div>
+                    <div class="tab-pane fade" id="service-two">
+                        <h4>Step Two</h4>
+                        <p>By posting the details of your desired camps, everyone will be able to see it. Please be precise about any expectations or if there are any extra information that might be useful in organising your camps!</p>
+                    </div>
+                    <div class="tab-pane fade" id="service-three">
+                        <h4>Step Three</h4>
+                        <p>Sharing with your friends is one of the best ways to get more people on board to participate in the camp. With more people participating in the camps, the cheaper the camps will be priced at!</p>
+                    </div>
+                    <div class="tab-pane fade" id="service-four">
+                        <h4>Step Four</h4>
+                        <p>Wait for us to organise it! When we have enough interested users who are interested in the particular camps, we will get in touch with different people to help make the camp a reality! Corporations are welcome to organise bonding camps for your workers! Schools and organisations are welcome to organise camps for their classes too!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+   <button type = "button" class ="btn btn-primary btn-lg">
+   <a href="{% url 'registration_register' %}" style="color:white;">Sign Up Now!</a>
+   </button>
+{% endif %}
+
+
+
+
+
+{% endblock %}

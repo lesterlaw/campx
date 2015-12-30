@@ -1,0 +1,133 @@
+{% extends "wishcamps/base.html" %}
+{% load crispy_forms_tags %}
+{% block campcamp %}
+
+        <header id="myCarousel" class="carousel slide">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="fill" style="background-image:url(../../../static/img/header1.jpg);"></div>
+                    <div class="carousel-caption">
+                        <h2>Caption 1</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="fill" style="background-image:url(../../../static/img/header2.jpg);"></div>
+                    <div class="carousel-caption">
+                        <h2>Caption 2</h2>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="fill" style="background-image:url(../../../static/img/header3.jpg);"></div>
+                    <div class="carousel-caption">
+                        <h2>Caption 3</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="icon-prev"></span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="icon-next"></span>
+            </a>
+        </header>
+        
+   <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">About
+                    <small>CampX</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{% url 'joincamp' %}">Home</a>
+                    </li>
+                    <li class="active">About</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Welcome to CampX
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i>Trusted</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>We hold 2 camps per week in every holiday that primary and secondary school students have. As we go along our journey, we hope to bring forth more trust from parents as we turn they child's life around. It's never easy, but we promise to do our best!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-gift"></i> Reasonably priced!</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>We charge $299 for each camp nett! That includes food and activities that are going to take place in the camp. It is priced in that range as we need to cover the costs that will be incurred. Overtime, we hope to reduce costs and thus reduce the prices as well.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-compass"></i> Easy to Sign Up</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Just key in your personal information, make payment, and we will issue you a confirmation letter upon completetion, Simple!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+
+        <!-- Intro Content -->
+        <div class="row">
+            <div class="col-md-6">
+                <img class="img-responsive" src="../../../static/img/climbing.jpg" alt="">
+            </div>
+            <div class="col-md-6">
+                <h2>About Our Own Camp</h2>
+                <p>We aim to solve the issue of dependence for our consumers. It is said that the generation of primary schoolers and secondary schoolers are in the “strawberry” generation overprotected by parents.</p> <p>The term “strawberry” is used to explain the people of this generation because strawberries are bruised easily. It means to say that the people of this generation, born between 1980 and 2010, are soft and easily bruised.</p> <p>Our business aims to resolve this problem by letting the consumers go through an intensive camp which teaches how to be dependent on others and have discipline, as well as teaches values like the importance of family and dependence.</p> <p>The camp will be divided into two groups, aged 10-12, and 13-15</p>
+
+            </div>
+        </div>
+        <!-- /.row -->
+
+<div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="page-header">CampX</h2>
+            </div>
+            <p class="col-lg-12 text-center">Sign up now to avoid disappointment!</p>
+            <div class="col-lg-12 text-center">
+				<form method="POST" class="post-form form-horizontal">{% csrf_token %}
+                {{ form|crispy }}
+
+					<button type="submit" class="btn btn-lg btn-default btn btn-success" style="margin-top:5px;">Register Now!</button>
+   				 </form>        
+    		</div>
+
+</div>
+</div>
+
+
+{% endblock %}

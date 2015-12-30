@@ -1,0 +1,24 @@
+{% extends 'wishcamps/base.html' %}
+
+{% block content %}
+
+<h2>User list for: {{ wishcamp }}</h2>
+
+<table border="1">
+  <tr>
+    <td>No.</td>
+    <td>Age</td>
+    <td>NRIC</td>
+    <td>Organisation</td>
+  </tr>
+  {% for x in wishcamp.personalinfo_set.all %}
+  <tr>
+    <td>{{ forloop.counter }})</td>
+    <td>{{ x.Age }}</td>
+    <td>{{ x.NRIC }}</td> 
+    <td>{{ x.Organisation }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

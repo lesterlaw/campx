@@ -1,0 +1,50 @@
+{% extends 'wishcamps/base.html' %}
+
+{% block content %}
+
+
+<!-- <div class="row">
+    
+    <div class="col-md-4 portfolio-item">
+        <h3>
+            <a href="/wishcamps/info/31/">Muay Thai Camp</a>
+        </h3>
+        <a href="/wishcamps/info/31/">
+            <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+        </a>
+
+        <p>Looking for interested parties who are interested in organising a muay thai camp, we can come together and share different ...</p>
+    </div>
+    
+    
+         </div> -->
+
+<div class="col-md-8 portfolio-item">
+
+<h1>{{ object.title }} on {{ object.estimated_date }}</h1></br>
+<h4>Details: {{ object.description }} </h4></br>
+
+<strong>{{ object.number_of_people }}</strong> {{ object.number_of_people|pluralize:"person,people" }} {{ object.number_of_people|pluralize:"is,are" }} interested now!</br>
+
+Posted By {{ object.user }} on {{ object.published_date }}</br></br></br>
+{% if user.is_staff or user = object.user %}
+<button type="button" class="btn btn-secondary"><a href="{% url 'wishcamps:wishedit' wishcamp.id %}">Edit Post</a></button>
+<button type="button" class="btn btn-secondary"><a href="{% url 'wishcamps:wishdelete' wishcamp.id %}">Delete Post</a></button>
+
+<form action="{% url 'wishcamps:wishjoindetails' wishcamp.id %}" method='POST' style="margin-top:5px;">
+{% csrf_token %}
+<button type="submit" class="btn btn-default btn-md">Join In!</button>
+{% else %}
+
+<form action="{% url 'wishcamps:wishjoindetails' wishcamp.id %}" method='POST' style="margin-top:5px;">
+{% csrf_token %}
+<button type="submit" class="btn btn-default btn-md">Join In!</button>
+</form>
+
+{% endif %}
+
+{% if user.is_staff %}
+<a class="btn btn-primary" href="{% url 'wishcamps:userlist' wishcamp.id %}" role="button">User Info</a>
+{% endif %}
+
+{% endblock %}

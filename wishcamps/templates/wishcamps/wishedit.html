@@ -1,0 +1,11 @@
+{% extends "wishcamps/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1>New Camp!</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form|crispy }}
+        {{ form2|crispy }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
